@@ -1,0 +1,32 @@
+{
+  "name": "react-server-context",
+  "version": "0.1.0",
+  "description": "provide data to react components from react-router staticContext, or from window, through a single interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "server",
+    "side",
+    "rendering",
+    "ssr",
+    "react-router",
+    "context",
+    "rails",
+    "react-rails",
+    "staticContext",
+    "react-router4"
+  ],
+  "author": "Aaron Lifton",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/react": "^16.0.41",
+    "@types/react-router-dom": "^4.2.5",
+    "typescript": "^2.7.2"
+  }
+}
