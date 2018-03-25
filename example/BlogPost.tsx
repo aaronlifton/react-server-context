@@ -1,6 +1,6 @@
 import * as React from 'react';
 // import withContext from 'react-server-context';
-import withContext from '../withContext';
+import withContext from '../src/withContext';
 
 import { ServerContext } from './App';
 

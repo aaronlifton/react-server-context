@@ -2,8 +2,10 @@
   "name": "react-server-context",
   "version": "0.1.0",
   "description": "provide data to react components from react-router staticContext, or from window, through a single interface",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsc --types node",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -25,6 +27,7 @@
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
+    "@types/node": "^9.6.0",
     "@types/react": "^16.0.41",
     "@types/react-router-dom": "^4.2.5",
     "typescript": "^2.7.2"

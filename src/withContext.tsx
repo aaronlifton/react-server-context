@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-interface WithContextProps extends RouteComponentProps<any> {}
+export interface WithContextProps extends RouteComponentProps<any> {}
 
 function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof S]) {
-  return (WrappedComp) => {
+  return (WrappedComp: React.ComponentType<any>) => {
     class WithContext extends React.Component<WithContextProps,{}> {
       constructor(props: WithContextProps) {
         super(props);
@@ -49,7 +49,7 @@ function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof
         return <WrappedComp {...newProps} />
       }
     }
-    return WithContext;
+    return (WithContext as React.ComponentType<WithContextProps>);
   }
 }
 
