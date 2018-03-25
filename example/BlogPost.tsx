@@ -13,13 +13,34 @@ interface BlogPostParams {
   title: string;
 }
 interface BlogPostProps {
+  serverContext: ServerContext;
   blogPost: BlogPost;
 }
-class BlogPostComponent extends React.Component<BlogPostProps> {
+interface BlogPostState {
+  blogPost: BlogPost;
+}
+
+class BlogPostComponent extends React.Component<BlogPostProps, BlogPostState> {
+  constructor(props: BlogPostProps) {
+    super(props);
+    this.state = {blogPost: this.props.serverContext.blogPost};
+  }
+
+  componentWillMount() {
+    // handle browser side navigation to blog posts
+    if (!this.props.serverContext.blogPost) {
+      this.getBlogPost();
+    }
+  }
+
+  getBlogPost() {
+    console.log('performing an ajax call and setting state here...');
+  }
+
   render() {
     return <div className="blog-post">
-      <h1>{this.props.blogPost.title}</h1>
-      <p>{this.props.blogPost.body}</p>
+      <h1>{this.state.blogPost.title}</h1>
+      <p>{this.state.blogPost.body}</p>
     </div>
   }
 }

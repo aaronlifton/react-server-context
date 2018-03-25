@@ -47,10 +47,22 @@ interface MyResolveOrLoaderComponentProps {
 
 ## how to use
 
+Function signature
+
+```tsx
+  function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof S])
+```
+
 Function description
 ```tsx
   const ComponentWithContext = withContext<MyServerContextInterface, MyComponentRouterParamsInterface>(myKeyOfServerContext, myKeyOfServerContextObject)(MyComponent)
 ```
+
+1. Define server context interface for the object that will be passed into router context prop
+2. Define params interface for your component's `props.match.params`
+3. Have your component pull the context into its state
+  `this.state = {blogPost: this.props.serverContext.blogPost};`
+4. Wrap your component with this component
 
 Full example
 
@@ -69,11 +81,27 @@ interface BlogPostProps {
   blogPost: BlogPost;
 }
 
-class BlogPostComponent extends React.Component<BlogPostProps> {
+class BlogPostComponent extends React.Component<BlogPostProps, BlogPostState> {
+  constructor(props: BlogPostProps) {
+    super(props);
+    this.state = {blogPost: this.props.serverContext.blogPost};
+  }
+
+  componentWillMount() {
+    // handle browser side navigation to blog posts
+    if (!this.props.serverContext.blogPost) {
+      this.getBlogPost();
+    }
+  }
+
+  getBlogPost() {
+    console.log('performing an ajax call and setting state here...');
+  }
+
   render() {
     return <div className="blog-post">
-      <h1>{this.props.blogPost.title}</h1>
-      <p>{this.props.blogPost.body}</p>
+      <h1>{this.state.blogPost.title}</h1>
+      <p>{this.state.blogPost.body}</p>
     </div>
   }
 }
