@@ -2,8 +2,11 @@
 
 ## Will this help me?
 Do you use server side rendering?
+
 Using react-rails or react-on-rails?
-Can your server react environment not use fetch? (e.g. ruby-racer)
+
+Can your server react environment not use fetch? (e.g. mini_racer, therubyracer)
+
 Do your components expect server context from different places?
 
 ## Example scenario
@@ -11,7 +14,7 @@ Do your components expect server context from different places?
 [ Rails server ]
   -> @my_context = {blogPost: BlogPost.first}
   -> react_component("App", {serverContext: @my_context}, {prerender: true})
-  -> [Rails JS environment, e.g. ruby-racer]
+  -> [Rails JS environment, e.g. mini_racer, therubyracer]
     -> @my_context given to react-router staticContext
     -> set @my_context on window.serverContext
     -> render with staticContext data
