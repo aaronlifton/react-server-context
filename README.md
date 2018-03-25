@@ -81,5 +81,7 @@ export const BlogPostWithContext = withContext<ServerContext, BlogPostParams>(
 ```
 
 ## Todo
-- move logic out of render()
-- support generic router interface
+
+:ballot_box_with_check: move logic out of render()
+
+:ballot_box_with_check: support generic router interface
