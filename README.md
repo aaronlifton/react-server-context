@@ -11,14 +11,14 @@ Do your components expect server context from different places?
 
 ## Example scenario
 ```
-[ Rails server ]
+[[ Rails server ]]
   -> @my_context = {blogPost: BlogPost.first}
   -> react_component("App", {serverContext: @my_context}, {prerender: true})
-  -> [Rails JS environment, e.g. mini_racer, therubyracer]
+  -> [[ Rails JS environment, e.g. mini_racer, therubyracer ]]
     -> @my_context given to react-router staticContext
     -> set @my_context on window.serverContext
     -> render with staticContext data
-    -> [Browser environment]
+    -> [[ Browser environment ]]
       -> look for context on window.serverContext
       -> render with serverContext from window
 ```
