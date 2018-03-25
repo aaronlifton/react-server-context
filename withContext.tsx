@@ -28,8 +28,6 @@ function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof
       }
 
       render() {
-        const params: P = this.props.match.params;
-        const routeParam = params[routeKey];
         let newProps;
         let alreadyResolved;
 
@@ -47,6 +45,10 @@ function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof
           };
           let window: Window;
           let context = window.serverContext[contextKey];
+
+          const params: P = this.props.match.params;
+          const routeParam = params[routeKey];
+
           const staleObj = context && context[routeKey] != routeParam;
           alreadyResolved = staleObj == false;
 
