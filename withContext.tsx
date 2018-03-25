@@ -10,9 +10,7 @@ interface ServerContext extends Object {
   blogPost?: BlogPost;
 }
 
-interface WithContextProps extends RouteComponentProps<any> {
-  resolvedContext: any;
-}
+interface WithContextProps extends RouteComponentProps<any> {}
 
 function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof S]) {
   return (WrappedComp) => {
@@ -23,7 +21,6 @@ function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof
       static displayName = 'WithContext';
 
       shouldComponentUpdate(newProps: WithContextProps) {
-        console.log({props: this.props.location.pathname, newProps: newProps.location.pathname});
         if (this.props.location.pathname == newProps.location.pathname) {
           return false;
         }
@@ -40,7 +37,6 @@ function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof
           alreadyResolved = true;
           newProps = {...this.props, serverContext: this.props.staticContext, alreadyResolved};
         } else {
-          console.log("no staticContext")
           // window should be defined if no staticContext from react-router
           interface Window {
             serverContext: {

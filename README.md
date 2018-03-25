@@ -1,8 +1,12 @@
 # react-server-context
 
+## Requirements
+
+react-router v4
+
 ## Will this help me?
 
-Do you use react-router 4?
+Do you use react-router v4?
 
 Do you use server side rendering?
 
