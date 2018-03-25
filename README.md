@@ -25,6 +25,16 @@ Do your components expect server context from different places?
 
 This component allows you to deal with server context in your component with one variable, `serverContext`
 
+## but I have a situation where I resolve data in the browser between routes?
+Not to worry, just wrap that component or HOC with this component, and have that component expect a `alreadyResolved` prop so it doesn't do extra work. Just have it function normally if `alreadyResolved == false`.
+
+e.g.
+```typescript
+interface MyResolveOrLoaderComponentProps {
+  alreadyResolved: boolean;
+}
+```
+
 ## how to use
 
 Function description
