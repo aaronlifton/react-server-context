@@ -61,7 +61,7 @@ Function description
 1. Define server context interface for the object that will be passed into router context prop
 2. Define params interface for your component's `props.match.params`
 3. Have your component pull the context into its state
-  `this.state = {blogPost: this.props.serverContext.blogPost};`
+    * `this.state = {blogPost: this.props.serverContext.blogPost};`
 4. Wrap your component with this component
 
 Full example
