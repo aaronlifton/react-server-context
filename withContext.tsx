@@ -1,15 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-interface BlogPost {
-  title: string;
-  body: string;
-}
-
-interface ServerContext extends Object {
-  blogPost?: BlogPost;
-}
-
 interface WithContextProps extends RouteComponentProps<any> {}
 
 function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof S]) {
@@ -36,15 +27,14 @@ function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof
           newProps = {...this.props, serverContext: this.props.staticContext, alreadyResolved};
         } else {
           // window should be defined if no staticContext from react-router
-          interface Window {
+          interface WindowT extends Window {
             serverContext: {
               [A in keyof S]: {
                 [B in keyof P]: any
               }
             }
           };
-          let window: Window;
-          let context = window.serverContext[contextKey];
+          let context = (window as WindowT).serverContext[contextKey];
 
           const params: P = this.props.match.params;
           const routeParam = params[routeKey];
@@ -53,7 +43,7 @@ function withContext<S,P>(contextKey: keyof S, routeKey: keyof P & keyof S[keyof
           alreadyResolved = staleObj == false;
 
           if (staleObj) context = null;
-          newProps = {...this.props, serverContext: window.serverContext, alreadyResolved};
+          newProps = {...this.props, serverContext: (window as WindowT).serverContext, alreadyResolved};
         }
 
         return <WrappedComp {...newProps} />
