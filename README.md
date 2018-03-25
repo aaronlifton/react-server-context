@@ -79,3 +79,7 @@ export const BlogPostWithContext = withContext<ServerContext, BlogPostParams>(
     'blogPost', 'title'
   )(BlogPostComponent)
 ```
+
+## Todo
+- move logic out of render()
+- support generic router interface
